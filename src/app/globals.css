@@ -2,26 +2,98 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: rgb(255, 255, 255);
+}
+
+
+/*
+  navbar
+*/
+
+.navbar__button-cart {
+ @apply bg-slate-100 text-rose-100 rounded-full hover:bg-slate-100 hover:border-solid hover:border-2 hover:border-red-300 border-l-slate-700 h-12 w-12 shadow-md
+}
+
+.navbar__button-login {
+ @apply hidden bg-red-300 text-rose-100 rounded-full hover:bg-slate-100 hover:border-solid hover:border-2 hover:border-red-300 ml-4 px-3 py-3 h-10 w-10 shadow
+}
+
+.home__slider {
+  @apply w-full min-w-full h-auto
+}
+
+
+/*
+  Card Shop
+*/
+
+.home__patterns-wrapper {
+  @apply grid 2xl:grid-cols-4 xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 py-4;
+}
+
+
+.pattern-card {
+  @apply flex flex-col p-6 justify-center items-start text-black bg-white hover:shadow-md rounded-3xl;
+}
+
+.pattern-card__content {
+  @apply w-full block justify-center items-start gap-2;
+}
+
+.pattern-card__content-title {
+  @apply text-[14px] leading-[24px] font-bold capitalize;
+}
+
+/*
+  Search Bar
+*/
+
+.searchbar {
+  @apply flex-col text-center w-full self-center max-sm:flex-col relative max-sm:gap-4;
+}
+
+.searchbar__item {
+  @apply flex-1 max-sm:w-full flex justify-start items-center relative;
+}
+
+.searchbar__input {
+  @apply w-[75%] h-[48px] pl-12 p-4 mt-4 bg-slate-200 rounded-full max-sm:rounded-full outline-none cursor-pointer text-sm;
+}
+
+.searchbar__title {
+  @apply text-red-400 font-bold;
+}
+
+.searchbar__filters {
+  @apply grid grid-cols-4 max-sm:gap-4 pt-4 justify-between text-center flex-col w-full;
+}
+
+
+/*
+ContactUs
+*/
+
+.contactus-form__container{
+  @apply w-[60%] my-16 rounded-2xl bg-white shadow-xl text-center items-center
+}
+
+.contactus-form__title {
+  @apply block font-sans mt-2 text-center
+}
+
+.contactus-form__input_title {
+  @apply font-normal
+}
+
+.contactus-form__input {
+  @apply h-10 pl-4 my-8 mx-4 shadow border;
+}
+
+.contactus-form__text-area{
+  @apply h-32 pl-4 pt-2 mt-8 mx-4 shadow border
+}
+
+.contactus-submit-button{
+  @apply bg-red-300 text-slate-100 h-12 w-full md:w-[30%]
 }
