@@ -6,36 +6,40 @@ export const data :CatalogPattern[] = [
         title: "Easta",
         products: [
             {
-                id: '1',
+                id: new Date().getTime().toString(),
                 name: 'Pretty-Flamingo',
                 image: 'https://www.lorartsofficial.com/wp-content/uploads/2024/01/Pretty-Flamingo-PNG.jpg',
                 title: 'Pretty-Flamingo',
-                price: 20,
-                isExclusive: true
+                price: 13,
+                isExclusive: true,
+                description: ""
             },
             {
-                id: '2',
+                id: new Date().getTime().toString(),
                 name: 'Pretty-Flamingo',
                 image: 'https://www.lorartsofficial.com/wp-content/uploads/2024/01/Pretty-Flamingo-PNG.jpg',
                 title: 'Pretty-Flamingo',
-                price: 20,
-                isExclusive: true
+                price: 18,
+                isExclusive: true,
+                description: ""
             },
             {
-                id: '3',
+                id: new Date().getTime().toString(),
                 name: 'Pretty-Flamingo',
                 image: 'https://www.lorartsofficial.com/wp-content/uploads/2024/01/Pretty-Flamingo-PNG.jpg',
                 title: 'Pretty-Flamingo',
-                price: 20,
-                isExclusive: true
+                price: 40,
+                isExclusive: true,
+                description: ""
             },
             {
-                id: '4',
+                id: new Date().getTime().toString(),
                 name: 'Pretty-Flamingo',
                 image: 'https://www.lorartsofficial.com/wp-content/uploads/2024/01/Pretty-Flamingo-PNG.jpg',
                 title: 'Pretty-Flamingo',
-                price: 20,
-                isExclusive: true
+                price: 40,
+                isExclusive: true,
+                description: ""
             }
         ]
     },
@@ -44,37 +48,40 @@ export const data :CatalogPattern[] = [
         title: "Primavera",
         products: [
             {
-                id: '1',
+                id: new Date().getTime().toString(),
                 name: 'Pretty-Flamingo',
                 image: 'https://www.lorartsofficial.com/wp-content/uploads/2024/01/Pretty-Flamingo-PNG.jpg',
                 title: 'Pretty-Flamingo',
-                price: 20,
-                isExclusive: true
+                price: 23,
+                isExclusive: true,
+                description: ""
             },
             {
-                id: '2',
+                id: new Date().getTime().toString(),
                 name: 'Pretty-Flamingo',
                 image: 'https://www.lorartsofficial.com/wp-content/uploads/2024/01/Pretty-Flamingo-PNG.jpg',
                 title: 'Pretty-Flamingo',
-                price: 20,
-                isExclusive: true
+                price: 15,
+                isExclusive: true,
+                description: ""
             },
             {
-                id: '3',
+                id: new Date().getTime().toString(),
                 name: 'Pretty-Flamingo',
                 image: 'https://www.lorartsofficial.com/wp-content/uploads/2024/01/Pretty-Flamingo-PNG.jpg',
                 title: 'Pretty-Flamingo',
-                price: 20,
-                isExclusive: true
-
+                price: 18,
+                isExclusive: true,
+                description: ""
             },
             {
-                id: '4',
+                id: new Date().getTime().toString(),
                 name: 'Pretty-Flamingo',
                 image: 'https://www.lorartsofficial.com/wp-content/uploads/2024/01/Pretty-Flamingo-PNG.jpg',
                 title: 'Pretty-Flamingo',
-                price: 20,
-                isExclusive: true                
+                price: 400,
+                isExclusive: true,
+                description: ""
             }
         ]
     }

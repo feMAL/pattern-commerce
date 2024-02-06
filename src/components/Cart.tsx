@@ -1,24 +1,16 @@
 "use client"
 
 import Image from 'next/image';
-import { Fragment } from 'react'; 
+import { Fragment, useContext } from 'react'; 
 import React from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { CartItem } from '.';
 import Link from 'next/link';
+import { CartContext } from '@/context/cart.context';
 
 const Cart = () => {
-
-    const cardProducts = [{
-        small_img: "/vercel.svg",
-        description: "Pretty-Flamingo",
-        price: 20
-    },
-    {
-        small_img: "/vercel.svg",
-        description: "Pretty-Flamingo",
-        price: 20
-    }];
+    
+    const {cart} = useContext(CartContext)
 
   return (
     <>
@@ -43,11 +35,11 @@ const Cart = () => {
 
                 </div>
                 {
-                    cardProducts.length ? (
-                    cardProducts.map( (product) => (
+                    cart.length ? (
+                    cart.map( (product) => (
                         <>
                             <div className='flex flex-col pt-8 items-center justify-center'>
-                                <CartItem item={product}></CartItem>
+                                <CartItem key={`cart_item_${product.item_id}`} item={product}></CartItem>
                                 <hr className='text-rose-400 w-[75%]' />
                             </div>
                         </>
@@ -59,7 +51,7 @@ const Cart = () => {
                     ) 
                 }
 
-                <button className={`mt-16 bg-red-300 text-slate-50 rounded h-12 w-[80%] hover:shadow-md ${cardProducts.length ? '': 'hidden'}`}>
+                <button className={`mt-16 bg-red-300 text-slate-50 rounded h-12 w-[80%] hover:shadow-md ${cart.length ? '': 'hidden'}`}>
                     CHECKOUT
                 </button>
             </div>
