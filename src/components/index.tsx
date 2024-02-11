@@ -8,6 +8,9 @@ import HomeSection from "./HomeSection";
 import ContactUs from "./ContactUs";
 import Cart from "./Cart";
 import CartItem from "./CartItem";
+import PatternDetails from "./PatternDetails";
+import PatternDetailsSelector from "./PatternDetailsSelector";
+import SignInSide from "./SingIn";
 
 export {
     NavBar,
@@ -19,5 +22,8 @@ export {
     HomeSection,
     Cart,
     ContactUs,
-    CartItem
+    CartItem,
+    PatternDetails,
+    PatternDetailsSelector,
+    SignInSide
 }

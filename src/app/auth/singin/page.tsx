@@ -1,8 +1,11 @@
+import { SignInSide } from '@/components'
 import React from 'react'
 
 const SingIn = () => {
   return (
-    <div>SingIn</div>
+    <div>
+      <SignInSide></SignInSide>
+    </div>
   )
 }
 

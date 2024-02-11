@@ -1,20 +1,20 @@
 'use client'
-import { CartItem, CartHookProps } from "@/types";
+import { ICartItem } from "@/types";
 import { useState } from "react"
 
 
-const useCart = (initialValue: CartItem[]) => {
+const useCart = (initialValue: ICartItem[]) => {
 
     const [cart, setCart] = useState(initialValue)
 
-    const addItem = (item : CartItem) => {
+    const addItem = (item : ICartItem) => {
 
         const isInCart = cart.find((element) => element.item_id === item.item_id);
 
         if(!isInCart) {
             const newCart =  [...cart , item];
-        
-            setCart(newCart);    
+
+            setCart(newCart);
         }
 
     }
@@ -22,7 +22,7 @@ const useCart = (initialValue: CartItem[]) => {
     const removeItem = (item_id: string) => {
         let newCart =  [...cart];
 
-        newCart = newCart.filter((item) => (item.item_id === item_id))
+        newCart = newCart.filter((item) => (item.item_id !== item_id))
         
         setCart(newCart);
     }

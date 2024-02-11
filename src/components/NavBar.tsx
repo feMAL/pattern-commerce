@@ -2,9 +2,13 @@
 
 import { CartContext } from '@/context/cart.context';
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import React, { useContext, useState } from 'react'
 
 const NavBar = () => {
+
+  const path = usePathname();
+
   const [menuAble, setMenuAble] = useState(false);
   const name = 'Paz Patterns'
 
@@ -14,7 +18,7 @@ const NavBar = () => {
     <header className='w-full absolute z-10 shadow'>
         <nav className='hidden md:flex h-20 justify-between items-center bg-white'>
             <Link href={"/"} className='mx-20'>
-                <span className='text-bold font-extrabold size-10'>
+                <span className='text-bold font-bold size-10'>
                   {name}
                 </span>
             </Link>
@@ -22,21 +26,21 @@ const NavBar = () => {
             <div className='flex items-center'>
               <ul>
                 <li className='inline px-8 transition-colors hover:text-rose-400' key="home">
-                  <Link href={'/'}>
+                  <Link href={'/'} className={path == "/" ? "navbar__link-active" : ""} > 
                     <span>
                       Home
                     </span>
                   </Link>
                 </li>
                 <li className='inline px-8 transition-colors hover:text-rose-400' key="catalog">
-                  <Link href={'/shop'}>
+                  <Link href={'/shop'} className={path == "/shop" ? "navbar__link-active" : ""}>
                     <span>
                       Shop
                     </span>
                   </Link>
                 </li>
                 <li className='inline px-8 transition-colors hover:text-rose-400' key="contactus">
-                  <Link href={'/contact'}>
+                  <Link href={'/contact'} className={path == "/contact" ? "navbar__link-active" : ""}>
                     <span>
                       Contact
                     </span>
