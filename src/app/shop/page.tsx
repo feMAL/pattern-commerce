@@ -15,7 +15,7 @@ export default function Shop() {
 
   return (
     <main className='flex-1 padding-x padding-y'>
-      <div className='flex-auto md:mx-20 min-h-[75vh] justify-center pt-8 bg-slate-50'>
+      <div className='flex-auto md:mx-20 min-h-[75vh] justify-center pt-8'>
         <SearchBar patternGroups={patternGroups}></SearchBar>
         <hr />
         {

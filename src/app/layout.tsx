@@ -3,6 +3,8 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { Footer, NavBar } from '@/components'
 import { CartProvider } from '@/context/cart.provider'
+import { NextUIProvider } from '@nextui-org/react'
+import Page from './page'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,7 +18,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-
 
   return (
     <html lang="en">

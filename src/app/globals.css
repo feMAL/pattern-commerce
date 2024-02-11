@@ -19,6 +19,10 @@ body {
  @apply hidden bg-red-300 text-rose-100 rounded-full hover:bg-slate-100 hover:border-solid hover:border-2 hover:border-red-300 ml-4 px-3 py-3 h-10 w-10 shadow
 }
 
+.navbar__link-active{
+  @apply text-rose-300 font-bold
+}
+
 .home__slider {
   @apply w-full min-w-full h-auto
 }
@@ -34,15 +38,54 @@ body {
 
 
 .pattern-card {
-  @apply flex flex-col p-6 justify-center items-start text-black bg-white hover:shadow-md rounded-3xl;
+  @apply flex min-w-full p-6 justify-center items-start text-black bg-white hover:shadow-md rounded-3xl;
 }
 
 .pattern-card__content {
-  @apply w-full block justify-center items-start gap-2;
+  @apply min-w-full block justify-center items-start gap-2;
 }
 
 .pattern-card__content-title {
   @apply text-[14px] leading-[24px] font-bold capitalize;
+}
+
+/*
+  Pattern Details
+*/
+.pattern-details {
+  @apply md:flex block md:columns-2 justify-between
+}
+
+.pattern-details__content {
+  @apply block w-full justify-center justify-items-center text-center
+}
+
+.pattern-details__content-image {
+  @apply relative object-contain
+}
+
+.pattern-details__content-title {
+  @apply capitalize font-extrabold text-slate-600 text-2xl
+}
+
+.pattern-details__content-description {
+  @apply mx-12 my-4 text-slate-400 text-sm
+}
+
+.pattern-details__content-price {
+  @apply flex my-4 mx-20 capitalize justify-start text-slate-600 text-2xl
+}
+
+.pattern-details__content-actions{
+  @apply row-auto my-8 md:w-full mx-4 justify-center;
+}
+
+.pattern-details__content-actions-button {
+  @apply row-span-1 min-w-[50%] md:w-[80%] my-2 md:mx-8 h-12 bg-rose-300 text-slate-100 font-sans text-2xl rounded hover:border hover:shadow
+}
+
+.pattern-details__content-actions-button_disabled {
+  @apply row-span-2 min-w-[50%] md:w-[80%] my-2 md:mx-8 h-12 bg-slate-100 text-slate-400 font-sans text-2xl rounded
 }
 
 /*
