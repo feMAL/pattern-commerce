@@ -1,10 +1,6 @@
 "use client"
 
 import { HomeSection, SearchBar, Slider } from '@/components';
-import Image from 'next/image';
-import {Cart} from '@/components'
-import { useState } from 'react'
-
 
 export default function Home() {
   return (
