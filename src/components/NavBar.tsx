@@ -25,13 +25,6 @@ const NavBar = () => {
             
             <div className='flex items-center'>
               <ul>
-                <li className='inline px-8 transition-colors hover:text-rose-400' key="home">
-                  <Link href={'/'} className={path == "/" ? "navbar__link-active" : ""} > 
-                    <span>
-                      Home
-                    </span>
-                  </Link>
-                </li>
                 <li className='inline px-8 transition-colors hover:text-rose-400' key="catalog">
                   <Link href={'/shop'} className={path == "/shop" ? "navbar__link-active" : ""}>
                     <span>
@@ -43,6 +36,13 @@ const NavBar = () => {
                   <Link href={'/contact'} className={path == "/contact" ? "navbar__link-active" : ""}>
                     <span>
                       Contact
+                    </span>
+                  </Link>
+                </li>
+                <li className='inline px-8 transition-colors hover:text-rose-400' key="contactus">
+                  <Link href={'/about'} className={path == "/about" ? "navbar__link-active" : ""}>
+                    <span>
+                      About Me
                     </span>
                   </Link>
                 </li>

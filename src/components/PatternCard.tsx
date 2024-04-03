@@ -17,9 +17,6 @@ const PatternCard = ({ pattern }: PatternCardProp) => {
 
             <div className='pattern-card__content w-full block text-center items-center'>
               <span className='pattern-card__content-title '> {`${pattern.isExclusive? '[Exclusive]': '[Non-Exclusive]'}`} - { pattern.title} </span>
-              <div className='w-full justify-between'>
-                <span>$</span> <span>{pattern.price}</span>
-              </div>
             </div>
           </div>
         </div>

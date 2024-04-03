@@ -10,7 +10,7 @@ import Cart from "./Cart";
 import CartItem from "./CartItem";
 import PatternDetails from "./PatternDetails";
 import PatternDetailsSelector from "./PatternDetailsSelector";
-import SignInSide from "./SingIn";
+import About from "./About";
 
 export {
     NavBar,
@@ -25,5 +25,5 @@ export {
     CartItem,
     PatternDetails,
     PatternDetailsSelector,
-    SignInSide
+    About
 }

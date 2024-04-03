@@ -38,7 +38,7 @@ body {
 
 
 .pattern-card {
-  @apply flex min-w-full p-6 justify-center items-start text-black bg-white hover:shadow-md rounded-3xl;
+  @apply flex min-w-full p-6 justify-center items-start text-black bg-white shadow;
 }
 
 .pattern-card__content {

@@ -1,6 +1,5 @@
 "use client"
-
-import React from 'react'
+import React from 'react';
 
 const ContactUs = () => {
   return (
@@ -10,7 +9,7 @@ const ContactUs = () => {
             <h2 className='font-bold text-2xl mb-4'>
                 Get In Touch
             </h2>
-            <span>
+            <span className='font-extralight'>
                 Have any questions or comments? Use this form to contact me at any time.
             </span>
 
