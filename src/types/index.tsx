@@ -1,26 +1,31 @@
 export * from './props'
+export * from './states'
 export interface IPatternVariants{
-    name : string;
-    image: string;
+    variant_identification : string;
+    description: string;
+    image: string[];
     color: string;
+    tags: ITags[];
+}
+
+export interface ICategory{
+    name : string;
+    description: string;
 }
 
 export interface IPattern {
-    id: string;
-    name: string;
+    pattern_identification: string;
     title: string;
     price: number;
-    image: string;
     isExclusive: boolean;
-    variants: IPatternVariants[],
-    tags: ITags[],
-    description?: string;
+    variants: IPatternVariants[];
+    types: string;
+    categories: ICategory[]
 } 
 
 export interface CatalogPattern {
     name: string;
-    title: string;
-    description?: string;
+    description: string;
     products: IPattern[];
 }
 export interface PatternGroup {

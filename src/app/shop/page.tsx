@@ -5,11 +5,12 @@ import { useState } from 'react'
 import PatternCard from '@/components/PatternCard'
 import { CatalogPattern } from '@/types'
 import { data } from '@/constants'
+import { useFetchProducts } from '@/hooks/ProductsHook'
 
 export default function Shop() {
 
-  const [loading, setLoading] = useState(false)
-  const patterns: CatalogPattern[] = data;
+  const {products, isLoading} = useFetchProducts();
+  const patterns: CatalogPattern[] = products;
 
   const patternGroups = data.map(categories => ({title: categories.title, link: categories.name }))
 
@@ -24,14 +25,14 @@ export default function Shop() {
               <h2
                 className='pt-8 pl-16 text-2xl font-serif font-bold capitalize'
                 id={`${pattern.name}_${index}`}>
-                  <span>
-                    {pattern.title}
+                  <span className='capitalize'>
+                    {pattern.description}
                   </span>
               </h2>
               <div className='home__patterns-wrapper -pl-20'>
                 {
                   pattern.products.map( (prod) => (
-                    <PatternCard key={`${pattern.name}_${prod.id}`}  pattern={prod}/>
+                    <PatternCard key={`${pattern.name}_${prod.pattern_identification}`}  pattern={prod}/>
                   ))
                 }
              </div>

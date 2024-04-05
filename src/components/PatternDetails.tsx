@@ -12,10 +12,10 @@ const PatternDetails = ( { product }: ProductDetailsProps ) => {
 
   const patternToItemCart  = (pattern: IPattern): ICartItem => {
     const cartItem: ICartItem = {
-      item_id: pattern.id,
+      item_id: pattern.pattern_identification,
       description:`${pattern.isExclusive? '[Exclusive]': '[Non-Exclusive]'} ${pattern.title} - ${itemSelected}` ,
       price: pattern.price,
-      small_img: pattern.image
+      small_img: pattern.variants[0].image[0]
     }
     return cartItem; 
   }
@@ -34,7 +34,7 @@ const PatternDetails = ( { product }: ProductDetailsProps ) => {
       <div className='pattern-details'>
         <div className='pattern-details__content'>
           <div className='pattern-details__content-image'>
-            <Image src={product.image} className='object-contain' alt={product.title} width={600} height={600} priority></Image>
+            <Image src={product.variants[0].image[0]} className='object-contain' alt={product.title} width={600} height={600} priority></Image>
           </div>
         </div>
         <div className='pattern-details__content'>
@@ -54,10 +54,10 @@ const PatternDetails = ( { product }: ProductDetailsProps ) => {
             </PatternDetailsSelector>
           </div>
           {
-            product.description? ( <>
+            product.title? ( <>
           <hr className='mt-4 w-[75%] m-auto' />
           <div className="pattern-details__content-description">
-            {product.description?.split(". ").map((paragraph)=> (<p key={paragraph}>{paragraph}</p>))}
+            {product.title}
           </div> 
           </>) :
           (<></>) }
