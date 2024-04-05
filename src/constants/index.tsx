@@ -1,6 +1,6 @@
 import { CatalogPattern } from "@/types/index";
 
-export const data :CatalogPattern[] = [
+export const data :any[] = [
     {
         name: "Easta",
         title: "Easta",
