@@ -27,7 +27,7 @@ const PatternDetailsSelector = ({ variants, setItemSelected }: ProductDetailsVar
       {
         (variant) => <SelectItem 
           className="w-full"
-          key={variant.name}
+          key={variant.variant_identification}
           value={variant.color}>{variant.color}
         </SelectItem>
       }

@@ -1,9 +1,18 @@
 import { Config } from "@/config/environments";
-import { CatalogPattern } from "@/types";
+import { CatalogPattern, IPattern } from "@/types";
 import axios from "axios";
 import Error from "next/error";
 
-const getAllProduct = async ( ): Promise<CatalogPattern[]> => {
+const getAllProductToCatalog = async ( ): Promise<CatalogPattern[]> => {
+
+    const url = Config().services.bff.url + `/products/catalog`;
+
+    const { data } = await axios.get( url );
+
+    return data;
+}
+
+const getAllProduct= async ( ): Promise<IPattern[]> => {
 
     const url = Config().services.bff.url + `/products`;
 
@@ -11,6 +20,7 @@ const getAllProduct = async ( ): Promise<CatalogPattern[]> => {
 
     return data;
 }
+
 
 const getProductById = async ( productId: string ) => {
 
@@ -21,12 +31,9 @@ const getProductById = async ( productId: string ) => {
     return data;
 }
 
-const getProductsByCategory = ( categories: string ) => {
-
-}
-
 
 export {
     getProductById,
-    getAllProduct
+    getAllProduct,
+    getAllProductToCatalog
 }

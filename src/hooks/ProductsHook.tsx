@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react'
-import { getProductById, getAllProduct } from '@/services/products.service'
-import { CatalogPattern } from '@/types';
+import { getProductById,getAllProductToCatalog } from '@/services/products.service'
+import { CatalogPattern, IPattern } from '@/types';
 
 export const useFetchProducts = ( ) => {
     const [products, setProducts ] = useState<CatalogPattern[]>([]);
     const [isLoading, setIsLoading ] = useState(true)
 
   const getProducts = async () => {
-    const allProducts = await getAllProduct();
+    const allProducts = await getAllProductToCatalog();
     setProducts(allProducts);
     setIsLoading(false);
   }
@@ -20,4 +20,24 @@ export const useFetchProducts = ( ) => {
         products,
         isLoading
     }
+}
+
+export const useFetchProduct = ( id: string ) => {
+  const [product, setProduct ] = useState<IPattern>();
+  const [isLoading, setIsLoading ] = useState(true)
+
+const getProduct = async () => {
+  const products = await getProductById(id);
+  setProduct(products);
+  setIsLoading(false);
+}
+
+useEffect( () => {
+  getProduct();
+},[]);
+
+  return {
+      product,
+      isLoading
+  }
 }

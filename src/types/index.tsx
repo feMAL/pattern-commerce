@@ -17,7 +17,6 @@ export interface IPattern {
     pattern_identification: string;
     title: string;
     price: number;
-    image: string;
     isExclusive: boolean;
     variants: IPatternVariants[];
     types: string;
