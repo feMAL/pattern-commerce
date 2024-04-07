@@ -1,8 +1,8 @@
 import paypal from '@paypal/react-paypal-js'
 import {NextResponse} from 'next/server'
 
-const clientId = "AZ4OwcfMTZV6f01IlOK690goN3T6MCCO4AtvUdEeqNTal9IatJYeVtAY6u-O8vPJfa08XZ4bqBA52JQx";
-const secretId = "EOx0yHyKf3VN6uckkfP7DJO8ahzESGoPhyZ6tFP9iyXDfOKj3rOnHsImxDReGXMzSQhb73EyIlTG-XxJ";
+const clientId = "remove";
+const secretId = "not valid";
 
 const environment = new paypal.core.SandboxEnvironment(clientId,secretId);
 
