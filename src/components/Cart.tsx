@@ -7,9 +7,11 @@ import React from 'react';
 import { CartItem } from '.';
 import Link from 'next/link';
 import { CartContext } from '@/context/cart.context';
-import { ICartItem } from '@/types';
+import { IPayPalApproveOrderValue, IPayment } from '@/types';
 
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
+import Error from 'next/error';
+import { sendCheckout } from '@/services/payment.service';
 
 
 const Cart = () => {
@@ -17,56 +19,86 @@ const Cart = () => {
     const {cart} = useContext(CartContext);
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
+    let total = 0;
+    cart.forEach((item) => {
+        total+=item.price
+    });
+
+    function checkoutTicket() {
+        return [
+            {
+                amount: {
+                    currency_code: "USD",
+                    value: total.toString(),
+                    breakdown: {
+                        item_total: {
+                            currency_code: "USD",
+                            value: total.toString()
+                        }
+                    }
+                },
+                items: 
+                    cart.map((item)=> ({
+                        name: item.item_id,
+                        description: item.description,
+                        quantity: "1",
+                        unit_amount: {
+                            currency_code: "USD",
+                            value: item.price
+                        }
+                    }))
+                
+            }
+        ]        
+        
+    }
+
 
     function createOrder(data:any, actions:any) {
         return actions.order.create({
           intent: "CAPTURE",
-          purchase_units: [
-            {
-                amount: {
-                    currency_code: "USD",
-                    value: "100.00",
-                    breakdown: {
-                        item_total: {
-                            currency_code: "USD",
-                            value: "100.00"
-                        }
-                    }
-                },
-                items: [
-                    {
-                        name: "Book of React",
-                        description: "A book about React",
-                        quantity: "1",
-                        unit_amount: {
-                            currency_code: "USD",
-                            value: "50.00"
-                        }
-                    },
-                    {
-                        name: "Book of Next",
-                        description: "A book about Next",
-                        quantity: "1",
-                        unit_amount: {
-                            currency_code: "USD",
-                            value: "50.00"
-                        }
-                    }
-                ]
-            }
-        ],
+          purchase_units: checkoutTicket()
         });
       }
 
-      async function onApprove(data: any, actions:any) {
-        console.log(data);
-        console.log(actions.order.capture)
-        const paymentID = data.paymentID;
-        const orderID = data.orderID;
-        const payerID = data.payerID;
-        console.log(paymentID);
-        console.log(orderID);
-        console.log(payerID);
+      const onApprove = async (data: any, actions:any) => {
+
+        const captureOrder: IPayPalApproveOrderValue = await actions.order.capture();
+        console.log(captureOrder)
+        if(captureOrder){
+            const { id, payer, purchase_units, status }  = captureOrder;
+
+            const payment: IPayment = {
+                platform: data.paymentSource,
+                total_amount: {
+                    amount: total.toString(),
+                    currency_code: "USD"  
+                },
+                buy_id: id,
+                order:{
+                    order_id: data.orderID,
+                    items: purchase_units[0].items,
+                    status: status
+                },
+                client: {
+                    name: payer.name.given_name,
+                    surname:  payer.name.surname,
+                    email: payer.email_address,
+                    address: {
+                        ...payer.address,
+                        ...purchase_units[0].shipping.address
+                    }
+                }
+            }
+            //enviar Payment al Backend
+            console.log(payment)
+
+            sendCheckout(payment)
+            
+        }else {
+            new Error({statusCode: 409, title: "No se genero la ordern de Compra"})
+        }
+
       }
 
     return (
@@ -106,8 +138,17 @@ const Cart = () => {
                             <span>
                                 Your Cart is empty, get it something in the <Link href={"/shop"}><span className=' font-bold capitalize text-rose-400'>shop</span></Link> 
                             </span>
-                        </div>
+                        </div>  
                         ) 
+                    }
+
+                    {
+                        cart.length > 0 ? 
+                            <div className='flex justify-evenly items-center w-full my-8'>
+                                <span className='font-bold text-md capitalize'>total</span>
+                                <span className='text-md'> $ {total}</span>
+                            </div>
+                             : <></>
                     }
                     </div>
 
@@ -119,42 +160,31 @@ const Cart = () => {
                         CHECKOUT
                     </button>
                     <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+                    <PayPalScriptProvider options={{clientId: process.env.NEXT_PUBLIC_CLIENT_ID_PAYPAL?process.env.NEXT_PUBLIC_CLIENT_ID_PAYPAL: "" }}>
+                                    
                         <ModalContent>
                             {(onClose) => (
                                 <>
                                 <ModalHeader className="flex flex-col gap-1">Checkout Your Products</ModalHeader>
                                 <ModalBody>
                                     <p> 
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Nullam pulvinar risus non risus hendrerit venenatis.
-                                    Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                                        Your pay well be $ {total} for {cart.length} items  
                                     </p>
                                 </ModalBody>
                                 <ModalFooter>
-                                    <PayPalScriptProvider options={{clientId: process.env.NEXT_PUBLIC_CLIENT_ID_PAYPAL?process.env.NEXT_PUBLIC_CLIENT_ID_PAYPAL: "" }}>
+
                                         <PayPalButtons
                                             createOrder={ (data, actions) => createOrder(data, actions)}
-                                                //const res = await fetch('/api/checkout',{
-                                                //    method:'POST'
-                                                //})
-                                                //const data = await res.json();
-                                                //console.log(data)
-                                                //return data.id
-                                            
                                             //onClose ={ () => {}}
                                             onApprove={ (data,actions) => onApprove(data,actions)}
                                         />
-                                    </PayPalScriptProvider>
-                                    <Button color="danger" variant="light" onPress={onClose}>
-                                    Close
-                                    </Button>
-                                    <Button color="primary" onPress={onClose}>
-                                    Action
-                                    </Button>
+
                                 </ModalFooter>
                                 </>
                             )}
+                            
                         </ModalContent>
+                        </PayPalScriptProvider> 
                     </Modal>
                 </div>
             </div>

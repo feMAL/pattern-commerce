@@ -1,5 +1,6 @@
 export * from './props'
 export * from './states'
+export * from './paypal'
 export interface IPatternVariants{
     variant_identification : string;
     description: string;
