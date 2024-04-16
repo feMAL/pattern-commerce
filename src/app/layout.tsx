@@ -1,10 +1,9 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { Footer, NavBar } from '@/components'
+import { Footer } from '@/components'
 import { CartProvider } from '@/context/cart.provider'
-import { NextUIProvider } from '@nextui-org/react'
-import Page from './page'
+import dynamic from 'next/dynamic'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,6 +17,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+
+  const NavBar = dynamic(() => import('../components/NavBar'), { ssr: false });
 
   return (
     <html lang="en">

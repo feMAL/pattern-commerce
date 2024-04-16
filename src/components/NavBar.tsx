@@ -3,7 +3,7 @@
 import { CartContext } from '@/context/cart.context';
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 const NavBar = () => {
 
@@ -13,6 +13,10 @@ const NavBar = () => {
   const name = 'Paz Patterns'
 
   const { cart } = useContext(CartContext);
+
+  useEffect(()=> {
+    window.localStorage.setItem('cart',JSON.stringify(cart));
+  },[cart])
 
   return (
     <header className='w-full absolute z-10 shadow'>
@@ -39,7 +43,7 @@ const NavBar = () => {
                     </span>
                   </Link>
                 </li>
-                <li className='inline px-8 transition-colors hover:text-rose-400' key="contactus">
+                <li className='inline px-8 transition-colors hover:text-rose-400' key="about">
                   <Link href={'/about'} className={path == "/about" ? "navbar__link-active" : ""}>
                     <span>
                       About Me

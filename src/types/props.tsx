@@ -17,6 +17,7 @@ export interface CartContextProps {
     cart: ICartItem[]
     addItem: ( item: ICartItem ) => void
     removeItem: ( item_id: string) => void
+    setFullCart?: (cart: ICartItem[] ) => void
 }
 
 export interface NavBarProps {

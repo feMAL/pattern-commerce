@@ -11,7 +11,7 @@ const CartItem = ({ item } : CartItemProps) => {
     <div className='grid grid-cols-4 w-full my-8'>
         <div className='col flex justify-center'>
             <div className='object-contain'>
-                <Image src={`${item.small_img}`} alt={`${item.description}`} width={100} height={30} className='object-contain'/>
+                <Image key={`cart_item_image_${item.description}`} src={`${item.small_img}`} alt={`${item.description}`} width={100} height={30} className='object-contain'/>
             </div>
         </div>
         <div className='col'>

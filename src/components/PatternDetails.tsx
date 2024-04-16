@@ -20,6 +20,10 @@ const PatternDetails = ( { product }: ProductDetailsProps ) => {
     return cartItem; 
   }
 
+  const itemIsInToChart = (product: IPattern) =>{
+    return !!cart.find((item) => item.item_id === product.pattern_identification);
+  } 
+
   const addingItemToCart = ( pattern: IPattern ) => {
       const itemToCart = patternToItemCart(pattern)
       addItem(itemToCart);
@@ -65,8 +69,8 @@ const PatternDetails = ( { product }: ProductDetailsProps ) => {
           <div className="pattern-details__content-actions">
             <button
               onClick={ () => addingItemToCart(product) } 
-              className={`${itemSelected? 'pattern-details__content-actions-button': 'pattern-details__content-actions-button_disabled'} `}
-              disabled={!itemSelected}> Add Cart </button>
+              className={`${!itemSelected || itemIsInToChart(product) ? 'pattern-details__content-actions-button_disabled': 'pattern-details__content-actions-button'} `}
+              disabled={!itemSelected || itemIsInToChart(product)}> { itemIsInToChart(product) ? 'Added to Cart': 'Add Cart' } </button>
             <button
               className={`${itemSelected? 'pattern-details__content-actions-button': 'pattern-details__content-actions-button_disabled'} `}
               disabled={!itemSelected}> Buy now </button>

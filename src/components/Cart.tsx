@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import {OnApproveBraintreeActions, PayPalButtons, PayPalScriptProvider} from '@paypal/react-paypal-js'
+import { PayPalButtons, PayPalScriptProvider} from '@paypal/react-paypal-js'
 
 import { useContext } from 'react'; 
 import React from 'react';
@@ -64,7 +64,7 @@ const Cart = () => {
       const onApprove = async (data: any, actions:any) => {
 
         const captureOrder: IPayPalApproveOrderValue = await actions.order.capture();
-        console.log(captureOrder)
+
         if(captureOrder){
             const { id, payer, purchase_units, status }  = captureOrder;
 
@@ -90,11 +90,8 @@ const Cart = () => {
                     }
                 }
             }
-            //enviar Payment al Backend
-            console.log(payment)
 
-            sendCheckout(payment)
-            
+            sendCheckout(payment);
         }else {
             new Error({statusCode: 409, title: "No se genero la ordern de Compra"})
         }
@@ -127,8 +124,8 @@ const Cart = () => {
                         cart.length ? (
                         cart.map( (product) => (
                             <>
-                                <div key={`cart_item_${product.item_id}`}  className='flex flex-col pt-8 items-center justify-center'>
-                                    <CartItem item={product}></CartItem>
+                                <div key={`cart_item_div_${product.item_id}`}  className='flex flex-col pt-8 items-center justify-center'>
+                                    <CartItem item={product} key={`cart_item_${product.item_id}`}></CartItem>
                                     <hr className='text-rose-400 w-[75%]' />
                                 </div>
                             </>
@@ -168,19 +165,21 @@ const Cart = () => {
                                 <ModalHeader className="flex flex-col gap-1">Checkout Your Products</ModalHeader>
                                 <ModalBody>
                                     <p> 
-                                        Your pay well be $ {total} for {cart.length} items  
+                                        Your well pay $ {total} for {cart.length} items  
                                     </p>
-                                </ModalBody>
-                                <ModalFooter>
-
+                                    <hr />
+                                    <p>
                                         <PayPalButtons
                                             createOrder={ (data, actions) => createOrder(data, actions)}
                                             //onClose ={ () => {}}
                                             onApprove={ (data,actions) => onApprove(data,actions)}
-                                        />
-
-                                </ModalFooter>
-                                </>
+                                        />  
+                                    </p>
+                                </ModalBody>
+                                {
+                                    //<ModalFooter>
+                                    //</ModalFooter>
+                                }</>
                             )}
                             
                         </ModalContent>
