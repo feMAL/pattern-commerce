@@ -1,8 +1,9 @@
+"use client"
 import React, {useState, useEffect} from 'react'
 import { getProductById,getAllProductToCatalog } from '@/services/products.service'
 import { CatalogPattern, IPattern } from '@/types';
 
-export const useFetchProducts = ( ) => {
+export const useProducts = ( ) => {
     const [products, setProducts ] = useState<CatalogPattern[]>([]);
     const [isLoading, setIsLoading ] = useState(true)
 
@@ -18,7 +19,7 @@ export const useFetchProducts = ( ) => {
   
     return {
         products,
-        isLoading
+        isLoading,
     }
 }
 

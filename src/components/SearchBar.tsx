@@ -1,11 +1,16 @@
 "use client" 
-import React, { useState } from 'react'
-import { PatternGroupsProp } from '../types';
+import React, { useEffect, useState } from 'react'
+import { CatalogPattern, PatternGroupsProp } from '../types';
 import Link from 'next/link';
 
-const SearchBar = ({ patternGroups }: PatternGroupsProp ) => {
-    const [pattern, setPattern] = useState("");
-    
+const SearchBar = ({ patternGroups, setFilter, filter }: PatternGroupsProp ) => {
+
+    function handleFilterCode ( strFilter: string ){
+
+        setFilter(strFilter);
+
+    }
+
   return (
     <div className='pt-16 pb-4'>
         <form className='searchbar'>
@@ -13,9 +18,9 @@ const SearchBar = ({ patternGroups }: PatternGroupsProp ) => {
             <div className='w-full'>
                 <input
                 type="text"
-                name="pattern"
-                value={pattern}
-                onChange={(e) => setPattern(e.target.value)}
+                name="search"
+                value={filter}
+                onChange={(e) => handleFilterCode(e.target.value.toLowerCase())}
                 placeholder='Flowers'
                 className='searchbar__input'/>
 
@@ -27,8 +32,8 @@ const SearchBar = ({ patternGroups }: PatternGroupsProp ) => {
         <div className='searchbar__filters'>
             {
                 patternGroups.map( (groups) => (
-                    <Link key={`${groups.link}_${groups.title}`} href={`search/${groups.link}`}>
-                        <span className='text-sm underline hover:text-pink-800'>
+                    <Link key={`${groups.link}_${groups.title}`} href={`?search=${groups.link}`}>
+                        <span className=' capitalize text-sm underline hover:text-pink-800'>
                             {groups.title}
                         </span>
                     </Link>
