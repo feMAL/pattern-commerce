@@ -4,6 +4,7 @@ import './globals.css'
 import { Footer } from '@/components'
 import { CartProvider } from '@/context/cart.provider'
 import dynamic from 'next/dynamic'
+import { ProductProvider } from '@/context/products.provider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,9 +25,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={`block`}>
         <CartProvider>
-          <NavBar/>
-          {children}
-          <Footer/>
+          <ProductProvider>
+            <NavBar/>
+              {children}
+            <Footer/>
+          </ProductProvider>
         </CartProvider>
       </body>
     </html>

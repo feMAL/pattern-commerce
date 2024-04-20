@@ -1,7 +1,11 @@
-import { ICartItem, IPattern, IPatternVariants, PatternGroup } from ".";
+import { CatalogPattern, ICartItem, IPattern, IPatternVariants, PatternGroup } from ".";
 
 export interface ProductDetailsProps {
     product:  IPattern;
+}
+
+export interface ProductsContextProps {
+    products:  CatalogPattern[];
 }
 
 export interface ProductDetailsVariantSelectionsProps {
@@ -25,7 +29,13 @@ export interface NavBarProps {
 }
 
 export interface PatternGroupsProp {
-    patternGroups: PatternGroup[]
+    patternGroups: PatternGroup[];
+    filter: string;
+    setFilter: (str: string) => void;
+}
+
+export interface ShopProps{
+    search: string;
 }
 
 export interface CartHookProps {
